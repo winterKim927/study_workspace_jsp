@@ -1,0 +1,5 @@
+package notice.repository;
+
+public class NoticeDAO {
+	
+}

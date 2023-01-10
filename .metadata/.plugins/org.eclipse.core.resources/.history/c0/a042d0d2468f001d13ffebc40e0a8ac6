@@ -1,0 +1,12 @@
+package notice.servlet;
+
+import javax.servlet.http.HttpServlet;
+
+import notice.repository.NoticeDAO;
+
+public class updateServlet extends HttpServlet{
+	NoticeDAO dao;
+	public updateServlet() {
+		dao = new NoticeDAO();
+	}
+}

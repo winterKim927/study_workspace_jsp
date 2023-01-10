@@ -1,0 +1,19 @@
+package notice.repository;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import notice.domain.Notice;
+
+public class NoticeDAO {
+	public List selectAll() {
+		ArrayList<Notice> list = new ArrayList();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		return list;
+	}
+}

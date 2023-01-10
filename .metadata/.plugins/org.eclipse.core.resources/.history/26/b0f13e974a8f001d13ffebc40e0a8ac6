@@ -1,0 +1,21 @@
+package notice.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import notice.repository.NoticeDAO;
+
+public class delServlet extends HttpServlet{
+	NoticeDAO dao;
+	public delServlet() {
+		dao = new NoticeDAO();
+	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+}

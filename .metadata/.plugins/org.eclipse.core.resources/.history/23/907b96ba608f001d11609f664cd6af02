@@ -1,0 +1,108 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import="notice.domain.Notice" %>
+<%@ page import="notice.repository.NoticeDAO" %>
+<%@ page import="java.util.ArrayList"%>
+<%! NoticeDAO dao = new NoticeDAO(); %>
+<% 
+	ArrayList<Notice> list = (ArrayList)dao.selectAll(); 
+	int totalRecord = list.size();
+	int pageSize = 10;
+	int totalPage = (int)Math.round(totalRecord/(float)pageSize);
+	int currentPage = 1;
+	if(request.getParameter("currentPage")!=null){
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
+	int blockSize = 10;
+	int firstPage = currentPage - (currentPage-1) % blockSize;
+	int lastPage = firstPage + blockSize - 1;
+	int curPos = (currentPage-1) * pageSize;
+	int num = totalRecord - curPos;
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+		width: 100%;
+		border: 1px solid #ddd;
+	}
+	th, td {
+		text-align: left;
+		padding: 16px;
+	}
+	tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+	
+	a {
+        text-decoration: none;
+      }
+  	button {
+		background-color: #04AA6D;
+		color: white;
+		padding: 12px 20px;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	
+	button:hover {
+		background-color: #45a049;
+	}
+	
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+	
+
+	function writeNew(){
+		$("button").click(function(){
+			location.href="write.html";
+		});
+	}
+	
+	$(function() {
+		writeNew();
+	})
+</script>
+</head>
+<body>
+	<h2>글목록</h2>
+	<p>글목록이 표시되는 페이지입니다</p>
+	<table>
+		<tr>
+			<th>No</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성시간</th>
+			<th>조회수</th>
+		</tr>
+		<%
+			for(int i = 0; i<pageSize; i++){ 
+				Notice dto = list.get(curPos++);
+		%>
+		<tr>
+			<td><%=num--%></td>
+			<td><a href="/notice/content.jsp?notice_idx=<%=dto.getNotice_idx()%>"><%=dto.getTitle()%></a></td>
+			<td><%=dto.getWriter()%></td>
+			<td><%=dto.getRegdate()%></td>
+			<td><%=dto.getHit()%></td>
+		</tr>
+		<%}%>
+		<tr>
+			<td colspan="5" style="text-align: center">
+				<a>◀</a>
+				<%for(int i = firstPage; i <= lastPage; i++){%>
+					<a href=""><%=i%></a>
+				<%}%>
+				<a>▶</a>
+			</td>
+		</tr>
+	</table>
+	<button>글쓰기</button>
+
+</body>
+</html>

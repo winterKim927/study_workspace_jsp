@@ -1,0 +1,12 @@
+package notice.repository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import notice.domain.Notice;
+
+public class NoticeDAO {
+	public List selectAll() {
+		ArrayList<Notice> list = new ArrayList();
+	}
+}

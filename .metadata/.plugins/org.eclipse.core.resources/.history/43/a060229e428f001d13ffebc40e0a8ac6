@@ -1,0 +1,9 @@
+package notice.servlet;
+
+import javax.servlet.http.HttpServlet;
+
+public class WriteServlet extends HttpServlet{
+	public WriteServlet() {
+		System.out.println("연결되었음");
+	}
+}
