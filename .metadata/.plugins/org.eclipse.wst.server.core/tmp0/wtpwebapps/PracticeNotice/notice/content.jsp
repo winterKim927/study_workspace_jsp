@@ -86,7 +86,7 @@
 			<input type="text" name="title" value="<%=dto.getTitle()%>">
 			 
 			<label for="writer">작성자</label> 
-			<input type="text" name="writer" value="<%=dto.getWriter()%>"> 
+			<input type="text" name="writer" value="<%=dto.getWriter()%>" readonly> 
 			
 			<label for="content">내용</label>
 			<textarea name="content" style="height: 200px"><%=dto.getContent()%></textarea>

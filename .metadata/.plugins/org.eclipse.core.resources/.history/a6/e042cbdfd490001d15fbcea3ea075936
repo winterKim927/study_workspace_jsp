@@ -1,0 +1,32 @@
+package notice.repository;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import notice.domain.Noticemember;
+import notice.pool.PoolManager;
+
+public class NoticememberDAO {
+	PoolManager pool = PoolManager.getInstance();
+	
+	public int insert(Noticemember dto) {
+		int result = 0;
+		Connection con = pool.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "insert into noticemember(noticemember_idx, id, pass, name)"
+				+ " values(seq_noticemember.nextval, ?, ?, ?)";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPass());
+			pstmt.setString(3, dto.getName());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pool.release(con, pstmt);
+		}
+		return result;
+	}
+}

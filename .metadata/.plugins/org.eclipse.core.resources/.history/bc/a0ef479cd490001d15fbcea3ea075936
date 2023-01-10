@@ -1,0 +1,9 @@
+package notice.servlet;
+
+import javax.servlet.http.HttpServlet;
+
+import notice.repository.NoticememberDAO;
+
+public class LoginServlet extends HttpServlet{
+	NoticememberDAO dao = new NoticememberDAO();
+}

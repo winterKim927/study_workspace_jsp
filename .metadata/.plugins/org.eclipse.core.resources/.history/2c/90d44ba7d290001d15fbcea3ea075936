@@ -1,0 +1,11 @@
+package gallery.util;
+
+//파일과 관련된 유용한 기능을 모아놓는 유틸클래스
+public class FileManager {
+	
+	public static String getExt(String path) {
+		int index = path.lastIndexOf(".");
+		return path.substring(index, path.length());
+		
+	}
+}

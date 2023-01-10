@@ -1,0 +1,33 @@
+package notice.repository;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import notice.domain.Noticemember;
+import notice.pool.PoolManager;
+
+public class NoticememberDAO {
+	PoolManager pool = PoolManager.getInstance();
+	
+	public int insert(Noticemember dto) {
+		int result = 0;
+		Connection con = pool.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "insert into gallery(gallery_idx, title, writer, content, filename)"
+				+ " values(seq_gallery.nextval, ?, ?, ?, ?)";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getWriter());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setString(4, dto.getFilename());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pool.release(con, pstmt);
+		}
+		return result;
+	}
+}

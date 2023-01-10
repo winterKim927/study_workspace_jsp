@@ -1,0 +1,7 @@
+package notice.repository;
+
+import notice.pool.PoolManager;
+
+public class NoticememberDAO {
+	PoolManager pool = PoolManager.getInstance();
+}

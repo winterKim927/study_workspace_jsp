@@ -1,0 +1,5 @@
+package notice.domain;
+
+public class NoticememberDAO {
+
+}

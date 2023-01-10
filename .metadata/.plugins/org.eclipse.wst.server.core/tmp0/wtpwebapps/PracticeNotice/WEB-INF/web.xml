@@ -43,6 +43,28 @@
   	<servlet-name>delServlet</servlet-name>
   	<url-pattern>/notice/del</url-pattern>
   </servlet-mapping>
+  
+ 	<!-- 회원가입 매핑  -->
+  <servlet>
+  	<servlet-name>registServlet</servlet-name>
+  	<servlet-class>notice.servlet.RegistServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>registServlet</servlet-name>
+  	<url-pattern>/regist</url-pattern>
+  </servlet-mapping>
+  
+   	<!-- 회원가입 매핑  -->
+  <servlet>
+  	<servlet-name>loginServlet</servlet-name>
+  	<servlet-class>notice.servlet.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>loginServlet</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
  
   
 </web-app>

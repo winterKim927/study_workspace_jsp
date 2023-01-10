@@ -1,9 +1,18 @@
+<%@page import="notice.domain.Noticemember"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="notice.domain.Notice" %>
 <%@ page import="notice.repository.NoticeDAO" %>
 <%@ page import="java.util.ArrayList"%>
 <%! NoticeDAO dao = new NoticeDAO(); %>
 <% 
+	Noticemember member = (Noticemember)session.getAttribute("member");
+	if(member==null){
+		out.print("<script>");
+		out.print("alert('멤버전용이야, 나가');");
+		out.print("location.href='/'");
+		out.print("</script>");
+		return;
+	}
 	ArrayList<Notice> list = (ArrayList)dao.selectAll(); 
 	int totalRecord = list.size();
 	int pageSize = 8;
@@ -60,7 +69,7 @@
 
 	function writeNew(){
 		$("button").click(function(){
-			location.href="write.html";
+			location.href="write.jsp";
 		});
 	}
 	
@@ -71,7 +80,7 @@
 </head>
 <body>
 	<h2>글목록</h2>
-	<p>글목록이 표시되는 페이지입니다</p>
+	<p>로그인한 자 : <%=member.getName()%></p>
 	<table>
 		<tr>
 			<th>No</th>
